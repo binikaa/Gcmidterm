@@ -5,4 +5,4 @@ This is the first midterm
 Everyone, how are you all?
 Git is sooo great.
 >>>>>>> c022dcb79b5c46feefda6f21c650c925b20a9435
-git git git git gti 
+git git git git gti added!!!!
