@@ -1,8 +1,5 @@
 hello
-<<<<<<< HEAD
-This i"Chnage"s the first midterm 
-=======
+This is the first midterm 
 Everyone, how are you all?
 Git is sooo great.
->>>>>>> c022dcb79b"IM CHANGING THIS"5c46feefda6f21c650c925b20a9435
-git git "CHANGE"git git gti 
+git git git git gti 
