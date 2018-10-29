@@ -4,36 +4,34 @@
 
 		private boolean isBomb;
 		private boolean isPublic;
+		private boolean isFlagged;
 		private int adjacentBombs;
 		
 		public Cell() {
 			this.isBomb = false;
 			this.isPublic = false;
+			this.setFlagged(false);
 			this.adjacentBombs = 0;
 		}
 		
-		public String revealCell() {
+		public void revealCell() {
 			if(isPublic) {
-				System.out.println("This cell has already been revealed!");
+				System.out.println("That cell has already been revealed.");
 			}
-			else if (isBomb) {
-				return "BOOM! GAME OVER\n" + gameOver();
+			if (!(isPublic) && (!isBomb)) {
+				isPublic = true;
 			}
-			isPublic = true;
-			return "";
-		}
-		
-		public String gameOver() {
-			if (isBomb) {
-				return "|B|";
-			}
-			if (isPublic) {
-				return "|" + Integer.toString(adjacentBombs) + "|";
-			}
-			return "|_|";
+			
 		}
 
-		
+		public boolean isFlagged() {
+			return isFlagged;
+		}
+
+		public void setFlagged(boolean isFlagged) {
+			this.isFlagged = isFlagged;
+		}
+
 		public boolean isBomb() {
 			return isBomb;
 		}
@@ -58,15 +56,18 @@
 		
 		@Override
 		public String toString() {
-			return "This is a bomb ";
+			return "I am a bomb.";
 		}
 		public String getDisplayString(Cell[][] arr) {
 	        for (Cell[] c : arr) {
-	            if(isPublic) {
+	            if(!isPublic) {
 	                return "|_|";
 	            }
+	            if (isFlagged) {
+	            	return "|F|";
+	            }
 	            if (isBomb) {
-	                return "|*|";
+	                return "|B|";
 	            }
 	            return "|" + Integer.toString(adjacentBombs) + "|";
 	        }
