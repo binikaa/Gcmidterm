@@ -25,6 +25,7 @@ public class MinefieldApp {
 		
 		while(!gameOver) {
 			
+			displayBoard(board);
 			String action = getAction(scnr);
 			
 			if (action.equalsIgnoreCase("reveal")) {
@@ -37,6 +38,9 @@ public class MinefieldApp {
 
 					gameOver(board);
 					break;
+				}
+				if (board[row][col].isFlagged()) {
+					System.out.println("That cell has been flagged!");
 				}
 				clearZeros(board, row, col);
 				
@@ -57,10 +61,10 @@ public class MinefieldApp {
 			
 			if(victoryCondition(board)) {
 			System.out.println("You win!");
+			displayBoard(board);
 			gameOver = true;
 			}
 		
-			displayBoard(board);
 		}
 		System.out.println("Thanks for playing!");
 	}
@@ -92,7 +96,7 @@ public class MinefieldApp {
 	}
 	
 	public static String getAction(Scanner scnr) {
-		System.out.println("Do you want to reveal a cell or flag a bomb? (Enter reveal||flag)");
+		System.out.println("\nDo you want to reveal a cell or flag a bomb? (Enter reveal||flag)");
 		String userA = scnr.nextLine();
 		
 		while (!userA.equalsIgnoreCase("reveal") && !userA.equalsIgnoreCase("flag")) {
