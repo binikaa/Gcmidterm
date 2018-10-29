@@ -8,8 +8,8 @@ public class MinefieldApp {
 		boolean gameOver = false;
 		
 		// Ask for the size of the minefield
-		System.out.println("Welcome to Minesweeper! \nHow many rows and columns should the (square) board have?");
-		int choice = getValidInt(scnr);
+		System.out.println("Welcome to Minesweeper!");
+		int choice = getBoard(scnr);
 		
 		Cell[][] board = new Cell[choice][choice];
 
@@ -70,6 +70,18 @@ public class MinefieldApp {
 		}
 		System.out.println("Thanks for playing!");
 	}
+	public static int getBoard(Scanner scnr) {
+		System.out.println("How many rows and columns should the (square) board have?\nFor best results, "
+				+ "between 3 and 25 is recommended.");
+		
+		int num = getValidInt(scnr);
+		while (num < 3 || num > 25) {
+			System.out.println("Between 3 and 25 rows/columns is recommended. Please choose from that range: ");
+			num = getValidInt(scnr);
+		}
+		return num;
+	}
+	
 	public static int getCoordinates(int choice, Scanner scnr) {
 		
 		int num = getValidInt(scnr);
