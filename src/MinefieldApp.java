@@ -15,7 +15,7 @@ public class MinefieldApp {
 
 		populateBoard(board);
 
-		//setBombs(board, choice);
+		// randomly distribute bombs throughout
 		setBombs(board, choice);
 		
 		// calculates all adjacent bombs
@@ -144,6 +144,11 @@ public class MinefieldApp {
 		// Base case three: this cell has bomb neighbors
 		if (numAdjBombs > 0) {
 			thisCell.setPublic(true);
+			return;
+		}
+		
+		// Base case four: the cell is itself a bomb
+		if (numAdjBombs < 0) {
 			return;
 		}
 		
