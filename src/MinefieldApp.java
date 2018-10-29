@@ -6,9 +6,11 @@ public class MinefieldApp {
 	public static void main(String[] args) {
 		Scanner scnr = new Scanner(System.in);
 		boolean gameOver = false;
+		
 		// Ask for the size of the minefield
-		System.out.println("Welcome to Minesweeper! \nEnter the size of the board: ");
+		System.out.println("Welcome to Minesweeper! \nHow many rows and columns should the (square) board have?");
 		int choice = getValidInt(scnr);
+		
 		Cell[][] board = new Cell[choice][choice];
 
 		populateBoard(board);

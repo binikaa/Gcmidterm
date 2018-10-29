@@ -64,7 +64,7 @@
 	                return "|_|";
 	            }
 	            if (isFlagged) {
-	            	return "|F|";
+	            	return "|?|";
 	            }
 	            if (isBomb) {
 	                return "|B|";
