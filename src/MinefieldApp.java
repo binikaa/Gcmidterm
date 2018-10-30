@@ -57,6 +57,16 @@ public class MinefieldApp {
 				flagCell(board, row, col);
 			}
 			
+			if (action.equalsIgnoreCase("remove")) {
+				
+				System.out.println("Enter the row of the flag you'd like to remove: (Enter 0-" + (choice-1) + ")");
+				int row =  getCoordinates(choice, scnr);
+				System.out.println("Enter the column of the flag you'd like to remove: (Enter 0-" + (choice-1) + ")");
+				int col =  getCoordinates(choice, scnr);
+				
+				removeFlag(board, row, col);
+			}
+			
 			
 			
 			
@@ -69,6 +79,17 @@ public class MinefieldApp {
 		}
 		System.out.println("Thanks for playing!");
 	}
+	public static void removeFlag(Cell[][] arr, int i, int n) {
+		if (arr[i][n].isFlagged()) {
+			arr[i][n].setFlagged(false);
+			arr[i][n].setPublic(false);
+			System.out.println("That cell has been un-flagged.");
+			return;
+		}
+		
+		System.out.println("That cell has not been flagged.");
+	}
+	
 	public static int getBoard(Scanner scnr) {
 		System.out.println("How many rows and columns should the (square) board have?\nFor best results, "
 				+ "between 3 and 25 is recommended.");
@@ -109,11 +130,11 @@ public class MinefieldApp {
 	}
 	
 	public static String getAction(Scanner scnr) {
-		System.out.println("\nDo you want to reveal a cell or flag a bomb? (Enter reveal||flag)");
+		System.out.println("\nDo you want to reveal a cell, flag a bomb, or remove a flag? (Enter reveal||flag||remove)");
 		String userA = scnr.nextLine();
 		
-		while (!userA.equalsIgnoreCase("reveal") && !userA.equalsIgnoreCase("flag")) {
-			System.out.println("You must choose to either reveal a cell or flag a bomb. (Enter reveal||flag)");
+		while (!userA.equalsIgnoreCase("reveal") && !userA.equalsIgnoreCase("flag") && !userA.equalsIgnoreCase("remove")) {
+			System.out.println("You must choose to either reveal a cell or flag a bomb. (Enter reveal||flag||remove)");
 			userA = scnr.nextLine();
 		}
 		
@@ -163,6 +184,9 @@ public class MinefieldApp {
 		for (int j = 0; j < arr.length; j++) {
 			for (int p = 0; p < arr.length; p++) {
 				if(!arr[j][p].isFlagged() && arr[j][p].isBomb()) {
+					return false;
+				}
+				if (arr[j][p].isFlagged() && !arr[j][p].isBomb()) {
 					return false;
 				}
 			}
