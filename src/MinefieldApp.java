@@ -147,11 +147,6 @@ public class MinefieldApp {
 			return;
 		}
 		
-		// Base case four: the cell is itself a bomb
-		if (numAdjBombs < 0) {
-			return;
-		}
-		
 		
 		// Recursive case: reveal this cell and neighbors. 
 		thisCell.setPublic(true);
