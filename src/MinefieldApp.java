@@ -36,13 +36,12 @@ public class MinefieldApp {
 				System.out.println("Enter the column of the cell you'd like to reveal: (Enter 0-" + (choice-1) + ")");
 				int col = getCoordinates(choice, scnr);
 				
-				if (board[row][col].isBomb()) {
-
-					gameOver(board);
-					break;
-				}
 				if (board[row][col].isFlagged()) {
 					System.out.println("That cell has been flagged!");
+				}
+				if (board[row][col].isBomb() && !board[row][col].isFlagged()) {
+					gameOver(board);
+					break;
 				}
 				clearZeros(board, row, col);
 				
