@@ -14,6 +14,8 @@ public class randomnumber{
 		int d= rand.nextInt(max- min);
 		return d;
 	}
+	
+	
 }
 
 

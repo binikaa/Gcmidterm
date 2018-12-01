@@ -1,6 +1,4 @@
-
-
-	public class Cell {
+        public class Cell {
 
 		private boolean isBomb;
 		private boolean isPublic;

@@ -1,9 +1,10 @@
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 public class MinefieldApp {
 
 	public static void main(String[] args) {
+		
 		Scanner scnr = new Scanner(System.in);
 		boolean gameOver = false;
 		
@@ -11,15 +12,22 @@ public class MinefieldApp {
 		System.out.println("Welcome to Minesweeper!");
 		int choice = getBoard(scnr);
 		
-		Cell[][] board = new Cell[choice][choice];
 
-		populateBoard(board);
+		// Ask for the size of the Minefield from player
+		
+		System.out.println("Welcome to Minesweeper! \nEnter the size of the board: ");
+		//int choice = getValidInt(scnr);// method to validate player input 
+		
+		Cell[][] board = new Cell[choice][choice]; // create cell object 2-d array  and store it in board variable and initialize it with choice
+
+
+		populateBoard(board); // method to put all cell objects in board
 
 		// randomly distribute bombs throughout
 		setBombs(board, choice);
 		
 		// calculates all adjacent bombs
-		for (int i = 0; i < board.length; i++) {
+		for (int i = 0; i < board.length; i++) {// calculate nearby bombs for every cell object 
 			for (int n = 0; n < board.length; n++) {
 				calcAdjBombs(board, i, n);
 			}
@@ -85,7 +93,7 @@ public class MinefieldApp {
 	public static int getCoordinates(int choice, Scanner scnr) {
 		
 		int num = getValidInt(scnr);
-		while (num < 0 || num > choice-1) {
+		while (num < 0 || (num > (choice-1))) {
 			System.out.println("Please enter an integer between 0 and " + (choice-1));
 			num = getValidInt(scnr);
 		}
@@ -99,11 +107,10 @@ public class MinefieldApp {
 		
 		try {
 			int num = scnr.nextInt();
-			scnr.nextLine();
 			return num;
 		} catch (InputMismatchException e) {
 			System.out.println("Invalid entry. Please enter an integer.");
-			scnr.nextLine();
+			scnr.next();
 			return getValidInt(scnr);
 		}
 		
@@ -202,6 +209,7 @@ public class MinefieldApp {
 
 	public static void setBombs(Cell[][] arr, int num) {
 		
+
 		for (int i = 0; i < (num + (num / 2)); i++) {
 			int r = randomnumber.randomNum(0, num);
 			int q = randomnumber.randomNum(0, num);
@@ -209,11 +217,12 @@ public class MinefieldApp {
 				i--;
 			}
 			arr[r][q].setBomb(true);
+			
 		}
 
 	}
 
-	public static void populateBoard(Cell[][] arr) {
+	public static void populateBoard(Cell[][] arr) {// creating arr array to store all cell objects 
 
 		for (int i = 0; i < arr.length; i++) {
 			for (int n = 0; n < arr.length; n++) {
@@ -221,7 +230,7 @@ public class MinefieldApp {
 				arr[i][n] = c;
 			}
 		}
-
+  
 	}
 
 	public static void calcAdjBombs(Cell[][] board, int i, int n) {
